@@ -1,7 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="myApp">
     <head>
+        <script src="js/angular.js"></script>
+        <script src="js/jquery-3.5.1.js"></script>
+        <link rel="stylesheet" href="/assets/bootstrap.min.css">
+        <title>FreeFormat Management</title>
         <link type="text/css" rel="stylesheet" href="/assets/styles.css">
+        <script>
+            var app = angular.module("myApp",[]);
+            app.controller("myContr",function($scope,$http){
+                $http.get("/php/getMessage.php").then(function (response){
+                    $scope.messageDetails=response.data;
+                    console.log($scope.messageDetails);
+                })
+            });
+        </script>
     </head>
     <header>
         <div class="border-box">
@@ -10,4 +23,21 @@
             </div>
         </div>
     </header>
+    <body ng-controller="myContr"> 
+        <div class="container container-1">
+            <h>FreeFormat Management</h>
+            <div class="container container-2">
+                <table>
+                    <tr>
+                        <th>Message Name</th>
+                        <th>Type</th>
+                    </tr>
+                    <tr ng-repeat="x in messages">
+                        <th>{{x.name}}</th>
+                        <th>{{x.type}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
 </html>

@@ -1,3 +1,20 @@
 html{
     background-color: gray;
 }
+
+.container{
+    background-color: white;
+}
+
+.container-1{
+    box-sizing: border-box;
+    height:98%;
+    width: 98%;
+    margin: auto;
+    overflow: auto;
+}
+
+table, th, tr{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
