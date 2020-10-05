@@ -1,5 +1,9 @@
 html{
-    background-color: gray;
+    background-color:white;
+}
+
+body{
+    background-color: white;
 }
 
 .container{
@@ -12,17 +16,37 @@ html{
     width: 98%;
     margin: auto;
     overflow: auto;
+    display: inline;
 }
 
-table, th, tr{
+.container-2{
+    display: flex;
+    margin-left: 0px;
+}
+
+table, th, td{
     border: 1px solid black;
     border-collapse: collapse;
 }
 
 .name{
-    width: 500px;
+    width: auto;
 }
 
 .type{
-    width: 200px;
+    width: auto;
+}
+
+table tr:nth-child(odd){
+    background-color: grey;
+}
+
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.message_body{
+    width: 500px;
+    height:auto;
+    margin-left: 200px;
 }

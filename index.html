@@ -6,16 +6,7 @@
         <link rel="stylesheet" href="/assets/bootstrap.min.css">
         <title>FreeFormat Management</title>
         <link type="text/css" rel="stylesheet" href="/assets/styles.css">
-        <script>
-            var app = angular.module("myApp",[]);
-            app.controller('myContr', function($scope, $http){
-                $http.get("/php/output.php")
-                .then(function (response) {
-                    $scope.info = response.data.Json_Data;
-                    console.log($scope.info);
-                });
-            });
-        </script>
+        <script src="dist/app.js"></script>
     </head>
     <header>
         <div class="border-box">
@@ -32,12 +23,17 @@
                     <tr>
                         <th class="name" ng-model="message_name">Message Name</th>
                         <th class="type" ng-model="message_type">Type</th>
+                        <th class="body" ng-model="message_body">Body</th>
                     </tr>
-                    <tr ng-repeat="user in info">
-                        <td>{{user.name}}</td>
-                        <td>{{user.type}}</td>
+                    <tr ng-repeat="info in infos">
+                        <td>{{info.name}}</td>
+                        <td>{{info.type}}</td>
+                        <td>{{info.body}}</td>
                     </tr>
                 </table>
+                <div class="function_container">
+                    <p>{{message_body}}</p>
+                </div>
             </div>
         </div>
     </body>
