@@ -8,11 +8,12 @@
         <link type="text/css" rel="stylesheet" href="/assets/styles.css">
         <script>
             var app = angular.module("myApp",[]);
-            app.controller("myContr",function($scope,$http){
-                $http.get("/php/getMessage.php").then(function (response){
-                    $scope.messageDetails=response.data;
-                    console.log($scope.messageDetails);
-                })
+            app.controller('myContr', function($scope, $http){
+                $http.get("/php/output.php")
+                .then(function (response) {
+                    $scope.info = response.data.Json_Data;
+                    console.log($scope.info);
+                });
             });
         </script>
     </head>
@@ -29,12 +30,12 @@
             <div class="container container-2">
                 <table>
                     <tr>
-                        <th>Message Name</th>
-                        <th>Type</th>
+                        <th class="name" ng-model="message_name">Message Name</th>
+                        <th class="type" ng-model="message_type">Type</th>
                     </tr>
-                    <tr ng-repeat="x in messages">
-                        <th>{{x.name}}</th>
-                        <th>{{x.type}}</th>
+                    <tr ng-repeat="user in info">
+                        <td>{{user.name}}</td>
+                        <td>{{user.type}}</td>
                     </tr>
                 </table>
             </div>

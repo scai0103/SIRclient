@@ -18,3 +18,11 @@ table, th, tr{
     border: 1px solid black;
     border-collapse: collapse;
 }
+
+.name{
+    width: 500px;
+}
+
+.type{
+    width: 200px;
+}
