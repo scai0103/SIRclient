@@ -21,7 +21,7 @@
             <div class="container container-2">
                 <table>
                     <tr>
-                        <th class="name" ng-model="message_name">Message Name</th>
+                        <th class="name" ng-model="$scope.message_name">Message Name</th>
                         <th class="type" ng-model="message_type">Type</th>
                         <th class="body" ng-model="message_body">Body</th>
                     </tr>
@@ -32,7 +32,15 @@
                     </tr>
                 </table>
                 <div class="function_container">
-                    <p>{{message_body}}</p>
+                    <button>Assign Message</button>
+                    <button>Assign to All Devices</button>
+                    <button>Remove Message</button>
+                    <button>Remove from All Devices</button>
+                    <form name="Device_Form">
+                        <label ng-repeat="info in infos">
+                            <input type="checkbox" class="device_selection" ng-model="device_name">{{info.name}}
+                        </label>
+                    </form>
                 </div>
             </div>
         </div>

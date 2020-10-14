@@ -8,6 +8,7 @@ body{
 
 .container{
     background-color: white;
+    max-width: 1920px;
 }
 
 .container-1{
@@ -22,11 +23,16 @@ body{
 .container-2{
     display: flex;
     margin-left: 0px;
+    width: 1920px;
 }
 
 table, th, td{
     border: 1px solid black;
     border-collapse: collapse;
+}
+
+table{
+    overflow: auto;
 }
 
 .name{
@@ -50,3 +56,14 @@ table tr:nth-child(even) {
     height:auto;
     margin-left: 200px;
 }
+
+.function_container{
+    width: 100%;
+    display: inline-block;
+    margin-left: 50px;
+}
+
+form{
+    display: grid;
+}
+
