@@ -23,7 +23,7 @@ body{
 .container-2{
     display: flex;
     margin-left: 0px;
-    width: 1920px;
+    width: auto;
 }
 
 table, th, td{
@@ -31,8 +31,18 @@ table, th, td{
     border-collapse: collapse;
 }
 
+tr:hover{
+    background-color: grey;
+}
+
 table{
     overflow: auto;
+    width: 1000px;
+    height: 850px;
+}
+
+.ctr_list{
+    width: auto;
 }
 
 .name{
@@ -41,14 +51,6 @@ table{
 
 .type{
     width: auto;
-}
-
-table tr:nth-child(odd){
-    background-color: grey;
-}
-
-table tr:nth-child(even) {
-    background-color: #ffffff;
 }
 
 .message_body{
@@ -63,7 +65,14 @@ table tr:nth-child(even) {
     margin-left: 50px;
 }
 
-form{
+.controllers{
+    overflow: scroll;
+    height: 800px;
+    width: 800px;
     display: grid;
+}
+
+.message_ctr:hover{
+    background-color: gray;
 }
 

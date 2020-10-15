@@ -21,7 +21,7 @@
             <div class="container container-2">
                 <table>
                     <tr>
-                        <th class="name" ng-model="$scope.message_name">Message Name</th>
+                        <th class="name" ng-model="message_name">Message Name</th>
                         <th class="type" ng-model="message_type">Type</th>
                         <th class="body" ng-model="message_body">Body</th>
                     </tr>
@@ -32,15 +32,32 @@
                     </tr>
                 </table>
                 <div class="function_container">
-                    <button>Assign Message</button>
-                    <button>Assign to All Devices</button>
-                    <button>Remove Message</button>
-                    <button>Remove from All Devices</button>
-                    <form name="Device_Form">
-                        <label ng-repeat="info in infos">
-                            <input type="checkbox" class="device_selection" ng-model="device_name">{{info.name}}
-                        </label>
-                    </form>
+                    <button class="message_ctr assign_message">Assign Message</button>
+                    <button class="message_ctr assign_all_message">Assign to All Devices</button>
+                    <button class="message_ctr remove_message">Remove Message</button>
+                    <button class="message_ctr remove_all_message">Remove from All Devices</button>
+                    <div class="controllers">
+                        <table class="ctr_list">
+                            <th><label>
+                                <input type="checkbox" id="checkall"/>
+                                All
+                            </label></th>
+                            <th>Device Name</th>
+                            <th>Description</th>
+                            <tbody ng-repeat="ctr in controllers | orderBy: 'ctrname'">
+                                <tr>
+                                    <td>
+                                        <label>
+                                            <input id="chkctr" type="checkbox"/>
+                                            {{$index+1}}                                            
+                                        </label>
+                                    </td>
+                                    <td>{{ctr.ctrname}}</td>
+                                    <td>{{ctr.describ}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
