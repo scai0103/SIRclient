@@ -45,6 +45,18 @@ table{
     width: auto;
 }
 
+.ctr_describ{
+    width: 350px;
+}
+
+.ctr_name{
+    width: 100px;
+}
+
+.ctr_index{
+    width: 50px;
+}
+
 .name{
     width: auto;
 }

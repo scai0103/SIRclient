@@ -1,65 +1,91 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
-    <head>
-        <script src="js/angular.js"></script>
-        <script src="js/jquery-3.5.1.js"></script>
-        <link rel="stylesheet" href="/assets/bootstrap.min.css">
-        <title>FreeFormat Management</title>
-        <link type="text/css" rel="stylesheet" href="/assets/styles.css">
-        <script src="dist/app.js"></script>
-    </head>
-    <header>
-        <div class="border-box">
-            <div class="border-box border-title">
-                <a>Solari di udine</a>
-            </div>
+
+<head>
+    <!--
+    <script src="js/angular.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/angular-material.min.js"></script>
+    <script src="js/angular-animate.min.js"></script>
+    <script src="js/angular-aria.min.js"></script>
+    -->
+    <link rel = "stylesheet"
+         href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
+
+    <link rel="stylesheet" href="/assets/bootstrap.min.css">
+    <title>FreeFormat Management</title>
+    <link type="text/css" rel="stylesheet" href="/assets/styles.css">
+    <script src="dist/app.js"></script>
+</head>
+<header>
+    <div class="border-box">
+        <div class="border-box border-title">
+            <a>Solari di udine</a>
         </div>
-    </header>
-    <body ng-controller="myContr"> 
-        <div class="container container-1">
-            <h>FreeFormat Management</h>
-            <div class="container container-2">
-                <table>
-                    <tr>
-                        <th class="name" ng-model="message_name">Message Name</th>
-                        <th class="type" ng-model="message_type">Type</th>
-                        <th class="body" ng-model="message_body">Body</th>
-                    </tr>
-                    <tr ng-repeat="info in infos">
-                        <td>{{info.name}}</td>
-                        <td>{{info.type}}</td>
-                        <td>{{info.body}}</td>
-                    </tr>
-                </table>
-                <div class="function_container">
-                    <button class="message_ctr assign_message">Assign Message</button>
-                    <button class="message_ctr assign_all_message">Assign to All Devices</button>
-                    <button class="message_ctr remove_message">Remove Message</button>
-                    <button class="message_ctr remove_all_message">Remove from All Devices</button>
-                    <div class="controllers">
-                        <table class="ctr_list">
-                            <th><label>
-                                <input type="checkbox" id="checkall"/>
-                                All
-                            </label></th>
-                            <th>Device Name</th>
-                            <th>Description</th>
-                            <tbody ng-repeat="ctr in controllers | orderBy: 'ctrname'">
-                                <tr>
-                                    <td>
-                                        <label>
-                                            <input id="chkctr" type="checkbox"/>
-                                            {{$index+1}}                                            
-                                        </label>
-                                    </td>
-                                    <td>{{ctr.ctrname}}</td>
-                                    <td>{{ctr.describ}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    </div>
+</header>
+
+<body ng-controller="myContr">
+    <div class="container container-1">
+        <h>FreeFormat Management</h>
+        <div class="container container-2">
+            <table>
+                <tr>
+                    <th class="index" ng-model="message_count">#</th>
+                    <th class="name" ng-model="message_name">Message Name</th>
+                    <th class="type" ng-model="message_type">Type</th>
+                    <th class="body" ng-model="message_body">Body</th>
+                </tr>
+                <tr ng-repeat="info in infos">
+                    <td> <label>
+                        <input ng-click="message_add(mes)" type="checkbox" ng-checked="message_exist(mes)" ng-model="message_selected" />
+                        {{$index+1}}
+                    </label></td>
+                    <td>{{info.name}}</td>
+                    <td>{{info.type}}</td>
+                    <td>{{info.body}}</td>
+                </tr>
+            </table>
+            <div class="function_container">
+                <md-button class="md-primary md-raised message_ctr assign_message" ng-click="submit($event)" >
+                    Assign Messages
+                </md-button>
+                <md-button class="md-primary md-raised message_ctr assign_all_message" ng-click="submit_all()">Assign to All Devices</md-button>
+                <md-button class="md-primary md-raised message_ctr remove_message" ng-click="remove()">Remove Message</md-button>
+                <md-button class="md-primary md-raised message_ctr remove_all_message" ng-click="remove_all()">Remove from All Devices</md-button>
+                <div class="controllers">
+                    <table class="ctr_list">
+                        <th>
+                                <input type="checkbox" ng-model="selectAll" ng-change="CheckAll()">
+                            </th>
+                        <th>Device Name</th>
+                        <th>Description</th>
+                        <th>Messages</th>
+                        <tbody ng-repeat="ctr in controllers | orderBy: 'ctrname'">
+                            <tr>
+                                <td class="ctr_index">
+                                    <label>
+                                        <input ng-click="select(ctr)" ng-checked="exist(ctr)" type="checkbox"
+                                            ng-model="selected" />
+                                        {{$index+1}}
+                                    </label>
+                                </td>
+                                <td class="ctr_name">{{ctr.ctrname}}</td>
+                                <td class="ctr_describ">{{ctr.describ}}</td>
+                                <td ng-repeat="message in $scope.selected">{{message}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
