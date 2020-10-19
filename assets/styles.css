@@ -2,6 +2,11 @@ html{
     background-color:white;
 }
 
+header{
+    background-color: #00000a;
+    color:white;
+}
+
 body{
     background-color: white;
 }
@@ -87,4 +92,5 @@ table{
 .message_ctr:hover{
     background-color: gray;
 }
+
 

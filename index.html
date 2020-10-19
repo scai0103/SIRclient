@@ -9,13 +9,12 @@
     <script src="js/angular-animate.min.js"></script>
     <script src="js/angular-aria.min.js"></script>
     -->
-    <link rel = "stylesheet"
-         href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
-      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
-      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
-      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
-      <script src = "https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
 
 
     <link rel="stylesheet" href="/assets/bootstrap.min.css">
@@ -37,42 +36,43 @@
         <div class="container container-2">
             <table>
                 <tr>
-                    <th class="index" ng-model="message_count" style="width: auto;">#</th>
+                    <th class="index" ng-model="message_count" style="width: 40px;">#</th>
                     <th class="name" ng-model="message_name">Message Name</th>
                     <th class="type" ng-model="message_type">Type</th>
                     <th class="body" ng-model="message_body">Body</th>
                 </tr>
-                <tr ng-repeat="info in infos" ng-click="test()">
-                    <td> <label>
-                        <input ng-click="message_add(mes)" type="checkbox" ng-model="message_selected" />
-                        {{$index+1}}
-                    </label></td>
-                    <td>{{info.name}}</td>
-                    <td>{{info.type}}</td>
-                    <td>{{info.body}}</td>
-                </tr>
+                <tbody ng-repeat="info in infos" ng-click="message_selected()">
+                    <tr>
+                        <td>{{$index+1}}</td>
+                        <td>{{info.name}}</td>
+                        <td>{{info.type}}</td>
+                        <td ng-model="msg_body">{{info.body}}</td>
+                    </tr>
+                </tbody>
             </table>
             <div class="function_container">
-                <md-button class="md-primary md-raised message_ctr assign_message" ng-click="submit($event)" >
+                <md-button class="md-primary md-raised message_ctr assign_message" ng-click="submit($event)">
                     Assign Messages
                 </md-button>
-                <md-button class="md-primary md-raised message_ctr assign_all_message" ng-click="submit_all()">Assign to All Devices</md-button>
-                <md-button class="md-primary md-raised message_ctr remove_message" ng-click="remove()">Remove Message</md-button>
-                <md-button class="md-primary md-raised message_ctr remove_all_message" ng-click="remove_all()">Remove from All Devices</md-button>
+                <md-button class="md-primary md-raised message_ctr assign_all_message" ng-click="submit_all()">Assign to
+                    All Devices</md-button>
+                <md-button class="md-primary md-raised message_ctr remove_message" ng-click="remove()">Remove Message
+                </md-button>
+                <md-button class="md-primary md-raised message_ctr remove_all_message" ng-click="remove_all()">Remove
+                    from All Devices</md-button>
                 <div class="controllers">
                     <table class="ctr_list">
                         <th>
-                                <input type="checkbox" ng-model="selectAll" ng-change="CheckAll()"> All
-                            </th>
+                            <input type="checkbox" ng-model="selectAll" ng-change="CheckAll()"> All
+                        </th>
                         <th>Device Name</th>
                         <th>Description</th>
                         <th>Messages</th>
                         <tbody ng-repeat="ctr in controllers | orderBy: 'ctrname'">
-                            <tr  ng-click="select(ctr)">
+                            <tr ng-click="select(ctr)">
                                 <td class="ctr_index">
                                     <label>
-                                        <input ng-checked="exist(ctr)" type="checkbox"
-                                            ng-model="selected" />
+                                        <input ng-checked="exist(ctr)" type="checkbox" ng-model="select" />
                                         {{$index+1}}
                                     </label>
                                 </td>

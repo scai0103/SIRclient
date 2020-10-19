@@ -11,7 +11,7 @@ app.controller('myContr', function($scope, $http,$mdDialog){
     });
 
     $scope.test = function(){
-        console.log('clicked');
+        alert('test');
     }
 
 
@@ -52,36 +52,19 @@ app.controller('myContr', function($scope, $http,$mdDialog){
             $scope.selected.push(ctr);
         }
         console.log($scope.selected);
+        //console.log(index);
     }
 
-    $scope.message_selected = [];
 
-    $scope.message_exist = function(mes){
-        return $scope.message_selected.indexOf(mes) > -1;
-    }
-/*
-    $scope.message_add = function(mes){
-        var index = $scope.message_selected.indexOf(mes);
-        if(index > -1)
-        {
-            $scope.message_selected.splice(index,1);
+//check function for message selection
+    $scope.message_selected = function (){
+        console.log("message clicked");
+        $scope.msg ={
+            body
         }
-        else
-        {
-            $scope.message_selected.push(mes);
-        }
-        console.log($scope.message_selected.length);
     }
-*/
-    $scope.message_add = function(mes){
-        var index = $scope.message_selected.indexOf(mes);
-        if(index = -1)
-        {
-            $scope.message_selected.push(mes);
-        }
-        
-        
-    }
+
+    
 //Assign message to devices
     $scope.submit = function(ev)
     {
@@ -95,7 +78,7 @@ app.controller('myContr', function($scope, $http,$mdDialog){
         .cancel('NO');
 
         $mdDialog.show(confirm).then(function () {
-            $scope.status = 'DO SOMETHING HERE';
+            alert("This is a test");
           }, function () {
             $scope.status = 'CANCEL';
           });
