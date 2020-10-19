@@ -19,14 +19,14 @@
 
 
     <link rel="stylesheet" href="/assets/bootstrap.min.css">
-    <title>FreeFormat Management</title>
+    <title class="md-flex">FreeFormat Management</title>
     <link type="text/css" rel="stylesheet" href="/assets/styles.css">
     <script src="dist/app.js"></script>
 </head>
 <header>
     <div class="border-box">
         <div class="border-box border-title">
-            <a>Solari di udine</a>
+            <a class="md-flex">Solari di udine</a>
         </div>
     </div>
 </header>
@@ -37,14 +37,14 @@
         <div class="container container-2">
             <table>
                 <tr>
-                    <th class="index" ng-model="message_count">#</th>
+                    <th class="index" ng-model="message_count" style="width: auto;">#</th>
                     <th class="name" ng-model="message_name">Message Name</th>
                     <th class="type" ng-model="message_type">Type</th>
                     <th class="body" ng-model="message_body">Body</th>
                 </tr>
-                <tr ng-repeat="info in infos">
+                <tr ng-repeat="info in infos" ng-click="test()">
                     <td> <label>
-                        <input ng-click="message_add(mes)" type="checkbox" ng-checked="message_exist(mes)" ng-model="message_selected" />
+                        <input ng-click="message_add(mes)" type="checkbox" ng-model="message_selected" />
                         {{$index+1}}
                     </label></td>
                     <td>{{info.name}}</td>
@@ -62,23 +62,23 @@
                 <div class="controllers">
                     <table class="ctr_list">
                         <th>
-                                <input type="checkbox" ng-model="selectAll" ng-change="CheckAll()">
+                                <input type="checkbox" ng-model="selectAll" ng-change="CheckAll()"> All
                             </th>
                         <th>Device Name</th>
                         <th>Description</th>
                         <th>Messages</th>
                         <tbody ng-repeat="ctr in controllers | orderBy: 'ctrname'">
-                            <tr>
+                            <tr  ng-click="select(ctr)">
                                 <td class="ctr_index">
                                     <label>
-                                        <input ng-click="select(ctr)" ng-checked="exist(ctr)" type="checkbox"
+                                        <input ng-checked="exist(ctr)" type="checkbox"
                                             ng-model="selected" />
                                         {{$index+1}}
                                     </label>
                                 </td>
                                 <td class="ctr_name">{{ctr.ctrname}}</td>
                                 <td class="ctr_describ">{{ctr.describ}}</td>
-                                <td ng-repeat="message in $scope.selected">{{message}}</td>
+                                <td>{{message}}</td>
                             </tr>
                         </tbody>
                     </table>

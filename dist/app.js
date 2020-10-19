@@ -10,6 +10,11 @@ app.controller('myContr', function($scope, $http,$mdDialog){
         $scope.controllers = response.data.Json_Data;
     });
 
+    $scope.test = function(){
+        console.log('clicked');
+    }
+
+
 //Assign device checkbox all
     $scope.CheckAll = function (){
         if($scope.selectAll){
@@ -46,6 +51,7 @@ app.controller('myContr', function($scope, $http,$mdDialog){
         {
             $scope.selected.push(ctr);
         }
+        console.log($scope.selected);
     }
 
     $scope.message_selected = [];
@@ -83,6 +89,7 @@ app.controller('myContr', function($scope, $http,$mdDialog){
         .title('Confirm')
         .textContent('Assign message to selected devices ?')
         .ariaLabel('Lucky Day')
+        .clickOutsideToClose(true)
         .targetEvent(ev)
         .ok('YES')
         .cancel('NO');
@@ -99,6 +106,7 @@ app.controller('myContr', function($scope, $http,$mdDialog){
         var confirm = $mdDialog.confirm()
         .title('Confirm')
         .textContent('Assign message to All devices ?')
+        .clickOutsideToClose(true)
         .ariaLabel('Lucky Day')
         .targetEvent(ev)
         .ok('YES')
@@ -116,6 +124,7 @@ app.controller('myContr', function($scope, $http,$mdDialog){
         var confirm = $mdDialog.confirm()
         .title('Confirm')
         .textContent('Remove selcted messages ?')
+        .clickOutsideToClose(true)
         .ariaLabel('Lucky Day')
         .targetEvent(ev)
         .ok('YES')
@@ -133,6 +142,7 @@ app.controller('myContr', function($scope, $http,$mdDialog){
         var confirm = $mdDialog.confirm()
         .title('Confirm')
         .textContent('Remove all messages from all devices ?')
+        .clickOutsideToClose(true)
         .ariaLabel('Lucky Day')
         .targetEvent(ev)
         .ok('YES')
@@ -144,6 +154,8 @@ app.controller('myContr', function($scope, $http,$mdDialog){
             $scope.status = 'CANCEL';
           });
     };
+
+
 
 
 });
