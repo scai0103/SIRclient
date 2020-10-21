@@ -93,4 +93,7 @@ table{
     background-color: gray;
 }
 
+.highlighted{
+    background-color: red;
+}
 

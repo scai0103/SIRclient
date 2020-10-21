@@ -1,6 +1,8 @@
 <?php
 include 'sql.php';
 
+
+//get messages information
 $query_messages = mysqli_query($connection, "select * from messages");
 $data_messages = array();
 $filename_messages = "F:\Repo\SIRclient\php\messages_output.php";
@@ -13,6 +15,8 @@ while ($row = mysqli_fetch_array($query_messages))
 //echo json_encode($data);
 $json_messages = json_encode(['Json_Data' => $data_messages]);
 file_put_contents($filename_messages, $json_messages);
+
+//get controler information
 
 $query_controllers = mysqli_query($connection, "select CTRNAM, CTRDESCR from controllers");
 $data_controllers = array();

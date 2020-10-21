@@ -1,5 +1,5 @@
 var app = angular.module("myApp",['ngMaterial']);
-app.controller('myContr', function($scope, $http,$mdDialog){
+app.controller('myContr', function($scope, $http, $mdDialog){
     $http.get("/php/messages_output.php")
     .then(function (response) {
         $scope.infos = response.data.Json_Data;
@@ -57,12 +57,14 @@ app.controller('myContr', function($scope, $http,$mdDialog){
 
 
 //check function for message selection
-    $scope.message_selected = function (){
-        console.log("message clicked");
-        $scope.msg ={
-            body
-        }
+    $scope.msg_selected = 0;
+    $scope.message_selected = function (msg){
+        var index = $scope.selected.indexOf(msg);
+        $scope.msg_selected = msg.body;
+        console.log($scope.msg_selected);
     }
+
+    
 
     
 //Assign message to devices
@@ -80,7 +82,7 @@ app.controller('myContr', function($scope, $http,$mdDialog){
         $mdDialog.show(confirm).then(function () {
             alert("This is a test");
           }, function () {
-            $scope.status = 'CANCEL';
+            alert("you have cancelled the assignment");
           });
     };
 
