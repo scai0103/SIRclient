@@ -32,7 +32,9 @@
 
 <body ng-controller="myContr" ng-init="displayData()">
     <div class="container container-1">
-        <h>FreeFormat Management</h>
+        <h style="font-size: large;">FreeFormat Management</h>
+        <md-button class="md-primary md-raised add_message" ng-click="showDialog($event)" style="margin-left: 392px;">Add new Message</md-button>
+        <md-button class="md-accent md-raised add_message" style="margin-left: 0px;">Remove selected message</md-button>
         <div class="container container-2">
             <table>
                 <tr>
@@ -56,9 +58,9 @@
                 </md-button>
                 <md-button class="md-primary md-raised message_ctr assign_all_message" ng-click="submit_all()">Assign to
                     All Devices</md-button>
-                <md-button class="md-primary md-raised message_ctr remove_message" ng-click="remove()">Remove Message
+                <md-button class="md-accent md-raised message_ctr remove_message" ng-click="remove()">Remove Message
                 </md-button>
-                <md-button class="md-primary md-raised message_ctr remove_all_message" ng-click="remove_all()">Remove
+                <md-button class="md-accent md-raised message_ctr remove_all_message" ng-click="remove_all()">Remove
                     from All Devices</md-button>
                 <div class="controllers">
                     <table class="ctr_list">
@@ -84,16 +86,6 @@
                     </table>
                 </div>
             </div>
-            <table>
-                <tr>
-                    <th>Firstname</th>
-                    <th>Last Name</th>
-                </tr>
-                <tr ng-repeat="x in names">
-                    <td>{{x.type}}</td>
-                    <td>{{x.name}}</td>
-                </tr>
-            </table>
         </div>
     </div>
 </body>

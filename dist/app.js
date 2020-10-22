@@ -167,7 +167,35 @@ app.controller('myContr', function($scope, $http, $mdDialog){
     };
 
 
+    //add message dialog
+    $scope.showDialog = function(evt){
+        $mdDialog.show({
+            controller: 'myContr',
+            templateUrl:'/view/add_msg.html',
+            targetEvent: evt,
+            clickOutsideToClose: true
+        })
+        .then(function(answer){
+            $scope.status = 'yes' + answer;
+        }, function(){
+            $scope.status = 'Cancelled';
+        });
+    }
 
+    $scope.new_msg_name = "";
+    $scope.new_msg_type = "";
+    $scope.new_msg_body = "";
+    //add message confirm button
+    $scope.confirm_add = function(msg){
+        $scope.new_msg_name = msg.name;
+        $scope.new_msg_type = msg.type;
+        $scope.new_msg_body = msg.body;
+    }
 
+    //add meesage cancel button
+    $scope.cancel_add = function(){
+        $mdDialog.hide();
+    }
+    
 });
 

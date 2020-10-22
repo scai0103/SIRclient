@@ -1,0 +1,37 @@
+<md-dialog aria-label="Add Message Dialog" class="fullscreen-dialog">
+    <md-toolbar style="width:800px">
+      <div class="md-toolbar-tools">
+        <h2>Add New Message</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="padding-top: 10px;">
+      <form name="msgForm"></form>
+      <div layout="layout" layout-sm="column">
+        <md-input-container style="width:80%">
+          <label>Message Name</label>
+          <input ng-model="msg.name"/>
+        </md-input-container>
+      </div>
+      <div layout="layout" layout-sm="column" style="padding-top: -20px;">
+      <md-input-container flex="flex">
+        <p>Message Type</p>
+      <select ng-model="msg.type">
+          <option>SIRFF</option>
+          <option>SIREMG</option>
+      </select>
+      </md-input-container>
+    </div>
+      <div layout="layout">
+        <md-input-container flex="flex">
+            <label>Message Body</label>
+            <textarea ng-model="msg.body" columns="1" md-maxlength="150"></textarea>
+          </md-input-container>
+      </div>
+      <md-button class="md-raise" ng-click="confirm_add(msg)" style="padding-left: 325px;">
+        Add
+      </md-button>
+      <md-button class="md-accent md-raise" ng-click="cancel_add()" style="padding-left: 325px;">
+        Cancel
+      </md-button>
+    </md-dialog-content>
+  </md-dialog>
