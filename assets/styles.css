@@ -89,11 +89,7 @@ table{
     display: grid;
 }
 
-.message_ctr:hover{
-    background-color: gray;
-}
-
-.highlighted{
-    background-color: red;
+.selected{
+    background-color: #8fbcff;
 }
 

@@ -30,7 +30,7 @@
     </div>
 </header>
 
-<body ng-controller="myContr">
+<body ng-controller="myContr" ng-init="displayData()">
     <div class="container container-1">
         <h>FreeFormat Management</h>
         <div class="container container-2">
@@ -41,7 +41,7 @@
                     <th class="type" ng-model="message_type">Type</th>
                     <th class="body" ng-model="message_body">Body</th>
                 </tr>
-                <tbody ng-class="" ng-repeat="info in infos" ng-click="message_selected(info)">
+                <tbody ng-class="getClass(info)" ng-repeat="info in infos" ng-click="message_selected(info)" ng-class="{'highlighted': info == selectedRow}">
                     <tr>
                         <td>{{$index+1}}</td>
                         <td>{{info.name}}</td>
@@ -84,6 +84,16 @@
                     </table>
                 </div>
             </div>
+            <table>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Last Name</th>
+                </tr>
+                <tr ng-repeat="x in names">
+                    <td>{{x.type}}</td>
+                    <td>{{x.name}}</td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>

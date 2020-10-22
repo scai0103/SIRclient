@@ -14,6 +14,14 @@ app.controller('myContr', function($scope, $http, $mdDialog){
         alert('test');
     }
 
+    $scope.displayData = function(){
+        $http.get("/php/select.php")
+        .success(function(data){
+            $scope.names = data;
+            console.log(data);
+        })
+    }
+
 
 //Assign device checkbox all
     $scope.CheckAll = function (){
@@ -58,10 +66,28 @@ app.controller('myContr', function($scope, $http, $mdDialog){
 
 //check function for message selection
     $scope.msg_selected = 0;
+    $scope.selectedIndex = -1;
     $scope.message_selected = function (msg){
         var index = $scope.selected.indexOf(msg);
         $scope.msg_selected = msg.body;
         console.log($scope.msg_selected);
+
+        if(msg === $scope.selectedIndex) {
+            $scope.selectedIndex = -1;
+        } else {
+            $scope.selectedIndex = msg;
+        }
+
+        console.log($scope.selectedIndex);
+    }
+
+    $scope.getClass = function(msg)
+    {
+        if(msg === $scope.selectedIndex){
+            return "selected";
+        } else {
+            return "";
+        }
     }
 
     
@@ -144,3 +170,4 @@ app.controller('myContr', function($scope, $http, $mdDialog){
 
 
 });
+
