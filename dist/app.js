@@ -165,6 +165,27 @@ app.controller('myContr', function($scope, $http, $mdDialog){
             $scope.status = 'CANCEL';
           });
     };
+    //remove message from table
+    $scope.remove_msg = function(ev)
+    {
+        var confirm = $mdDialog.confirm()
+        .title('Confirm')
+        .textContent('Remove selected message from table ?')
+        .clickOutsideToClose(true)
+        .ariaLabel('Lucky Day')
+        .targetEvent(ev)
+        .ok('YES')
+        .cancel('NO');
+
+        $mdDialog.show(confirm).then(function () {
+            $scope.status = 'DO SOMETHING HERE';
+            alert("messge deleted");
+          }, function () {
+            $scope.status = 'CANCEL';
+            alert("message not deleted");
+          });
+    };
+
 
 
     //add message dialog
@@ -190,12 +211,26 @@ app.controller('myContr', function($scope, $http, $mdDialog){
         $scope.new_msg_name = msg.name;
         $scope.new_msg_type = msg.type;
         $scope.new_msg_body = msg.body;
+        $scope.showAlert(msg.name);
     }
 
     //add meesage cancel button
     $scope.cancel_add = function(){
         $mdDialog.hide();
     }
+
+    $scope.showAlert = function (ev) {
+        $mdDialog.show(
+          $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title('Message added')
+            .textContent(ev + ' is added to the table')
+            .ariaLabel('Alert Dialog Demo')
+            .ok('Thanks')
+            .targetEvent(ev)
+        );
+      };
     
 });
 
