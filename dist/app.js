@@ -14,15 +14,6 @@ app.controller('myContr', function($scope, $http, $mdDialog){
         alert('test');
     }
 
-    $scope.displayData = function(){
-        $http.get("/php/select.php")
-        .success(function(data){
-            $scope.names = data;
-            console.log(data);
-        })
-    }
-
-
 //Assign device checkbox all
     $scope.CheckAll = function (){
         if($scope.selectAll){
@@ -59,18 +50,20 @@ app.controller('myContr', function($scope, $http, $mdDialog){
         {
             $scope.selected.push(ctr);
         }
-        console.log($scope.selected);
+        //console.log($scope.selected);
         //console.log(index);
     }
 
 
-//check function for message selection
+//function for message selection
     $scope.msg_selected = 0;
     $scope.selectedIndex = -1;
     $scope.message_selected = function (msg){
         var index = $scope.selected.indexOf(msg);
         $scope.msg_selected = msg.body;
         console.log($scope.msg_selected);
+        console.log(msg.name);
+        console.log(msg.type);
 
         if(msg === $scope.selectedIndex) {
             $scope.selectedIndex = -1;
@@ -78,7 +71,7 @@ app.controller('myContr', function($scope, $http, $mdDialog){
             $scope.selectedIndex = msg;
         }
 
-        console.log($scope.selectedIndex);
+        //console.log($scope.selectedIndex);
     }
 
     $scope.getClass = function(msg)
@@ -179,7 +172,7 @@ app.controller('myContr', function($scope, $http, $mdDialog){
 
         $mdDialog.show(confirm).then(function () {
             $scope.status = 'DO SOMETHING HERE';
-            alert("messge deleted");
+            alert("Message detelted");
           }, function () {
             $scope.status = 'CANCEL';
             alert("message not deleted");

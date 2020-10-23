@@ -9,13 +9,14 @@
       <div layout="layout" layout-sm="column">
         <md-input-container style="width:80%">
           <label>Message Name</label>
-          <input ng-model="msg.name"/>
+          <input ng-model="msg.name" ng-minlength="1" ng-maxlength="10"/>
         </md-input-container>
       </div>
       <div layout="layout" layout-sm="column" style="padding-top: -20px;">
       <md-input-container flex="flex">
         <p>Message Type</p>
       <select ng-model="msg.type">
+          <option value="" selected disabled hidden>Select a type</option>
           <option>SIRFF</option>
           <option>SIREMG</option>
       </select>
