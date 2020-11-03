@@ -172,7 +172,7 @@ app.controller('myContr', function($scope, $http, $mdDialog){
 
         $mdDialog.show(confirm).then(function () {
             $scope.status = 'DO SOMETHING HERE';
-            alert("Message detelted");
+            alert("Message deleted");
           }, function () {
             $scope.status = 'CANCEL';
             alert("message not deleted");
