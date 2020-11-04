@@ -263,7 +263,7 @@ app.controller('myContr', function($scope, $http, $mdDialog){
     $scope.showDialog = function(evt){
         $mdDialog.show({
             controller: 'myContr',
-            templateUrl:'/view/add_msg.html',
+            templateUrl:'/SIRclient/view/add_msg.html',
             targetEvent: evt,
             clickOutsideToClose: true
         })

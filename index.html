@@ -45,11 +45,7 @@
                     <th class="type" ng-model="message_type">Type</th>
                     <th class="body" ng-model="message_body">Body</th>
                 </tr>
-<<<<<<< HEAD
                 <tbody ng-class="getClass(info)" ng-repeat="info in names" ng-click="message_selected(info)" ng-class="{'highlighted': info == selectedRow}">
-=======
-                <tbody ng-class="getClass(info)" ng-repeat="info in infos" ng-click="message_selected(info)" ng-class="{'highlighted': info == selectedRow}">
->>>>>>> 453c5d8e044e6e9c7d991001e4c74b63f0865444
                     <tr>
                         <td onselectstart="return false">{{$index+1}}</td>
                         <td onselectstart="return false">{{info.name}}</td>
