@@ -14,6 +14,7 @@ while ($row = mysqli_fetch_array($query_messages))
 
 //echo json_encode($data);
 $json_messages = json_encode(['Json_Data' => $data_messages]);
+echo $json_messages;
 file_put_contents($filename_messages, $json_messages);
 
 //get controler information

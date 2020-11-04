@@ -1,17 +1,27 @@
 var app = angular.module("myApp",['ngMaterial']);
 app.controller('myContr', function($scope, $http, $mdDialog){
-    $http.get("/php/messages_output.php")
+    //$http.get("/SIRclient/php/messages_output.php")
+    $http.get("/SIRclient/php/getMessage.php")
     .then(function (response) {
-        $scope.infos = response.data.Json_Data;
+        //$scope.infos = response.data.Json_Data;
+        $scope.infos = response.data;
     });
 
-    $http.get("/php/controllers_output.php")
+    $http.get("/SIRclient/php/controllers_output.php")
     .then(function (response) {
         $scope.controllers = response.data.Json_Data;
     });
 
     $scope.test = function(){
         alert('test');
+    }
+
+    $scope.displayData = function(){
+        $http.get("/SIRclient/php/select.php")
+        .success(function(data){
+            $scope.names = data;
+            console.log(data);
+        })
     }
 
 
@@ -58,10 +68,28 @@ app.controller('myContr', function($scope, $http, $mdDialog){
 
 //check function for message selection
     $scope.msg_selected = 0;
+    $scope.selectedIndex = -1;
     $scope.message_selected = function (msg){
         var index = $scope.selected.indexOf(msg);
         $scope.msg_selected = msg.body;
         console.log($scope.msg_selected);
+
+        if(msg === $scope.selectedIndex) {
+            $scope.selectedIndex = -1;
+        } else {
+            $scope.selectedIndex = msg;
+        }
+
+        console.log($scope.selectedIndex);
+    }
+
+    $scope.getClass = function(msg)
+    {
+        if(msg === $scope.selectedIndex){
+            return "selected";
+        } else {
+            return "";
+        }
     }
 
     
@@ -144,3 +172,4 @@ app.controller('myContr', function($scope, $http, $mdDialog){
 
 
 });
+
