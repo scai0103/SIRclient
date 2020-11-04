@@ -61,18 +61,20 @@ app.controller('myContr', function($scope, $http, $mdDialog){
         {
             $scope.selected.push(ctr);
         }
-        console.log($scope.selected);
+        //console.log($scope.selected);
         //console.log(index);
     }
 
 
-//check function for message selection
+//function for message selection
     $scope.msg_selected = 0;
     $scope.selectedIndex = -1;
     $scope.message_selected = function (msg){
         var index = $scope.selected.indexOf(msg);
         $scope.msg_selected = msg.body;
         console.log($scope.msg_selected);
+        console.log(msg.name);
+        console.log(msg.type);
 
         if(msg === $scope.selectedIndex) {
             $scope.selectedIndex = -1;
@@ -80,7 +82,7 @@ app.controller('myContr', function($scope, $http, $mdDialog){
             $scope.selectedIndex = msg;
         }
 
-        console.log($scope.selectedIndex);
+        //console.log($scope.selectedIndex);
     }
 
     $scope.getClass = function(msg)
@@ -167,6 +169,26 @@ app.controller('myContr', function($scope, $http, $mdDialog){
             $scope.status = 'CANCEL';
           });
     };
+    //remove message from table
+    $scope.remove_msg = function(ev)
+    {
+        var confirm = $mdDialog.confirm()
+        .title('Confirm')
+        .textContent('Remove selected message from table ?')
+        .clickOutsideToClose(true)
+        .ariaLabel('Lucky Day')
+        .targetEvent(ev)
+        .ok('YES')
+        .cancel('NO');
+
+        $mdDialog.show(confirm).then(function () {
+            $scope.status = 'DO SOMETHING HERE';
+            alert("Message deleted");
+          }, function () {
+            $scope.status = 'CANCEL';
+            alert("message not deleted");
+          });
+    };
 
 
         //remove message from table
@@ -237,6 +259,49 @@ app.controller('myContr', function($scope, $http, $mdDialog){
           };
 
 
+    //add message dialog
+    $scope.showDialog = function(evt){
+        $mdDialog.show({
+            controller: 'myContr',
+            templateUrl:'/view/add_msg.html',
+            targetEvent: evt,
+            clickOutsideToClose: true
+        })
+        .then(function(answer){
+            $scope.status = 'yes' + answer;
+        }, function(){
+            $scope.status = 'Cancelled';
+        });
+    }
 
+    $scope.new_msg_name = "";
+    $scope.new_msg_type = "";
+    $scope.new_msg_body = "";
+    //add message confirm button
+    $scope.confirm_add = function(msg){
+        $scope.new_msg_name = msg.name;
+        $scope.new_msg_type = msg.type;
+        $scope.new_msg_body = msg.body;
+        $scope.showAlert(msg.name);
+    }
+
+    //add meesage cancel button
+    $scope.cancel_add = function(){
+        $mdDialog.hide();
+    }
+
+    $scope.showAlert = function (ev) {
+        $mdDialog.show(
+          $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title('Message added')
+            .textContent(ev + ' is added to the table')
+            .ariaLabel('Alert Dialog Demo')
+            .ok('Thanks')
+            .targetEvent(ev)
+        );
+      };
+    
 });
 
